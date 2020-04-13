@@ -1,0 +1,39 @@
+<link rel="stylesheet" href="https://cdn.rawgit.com/konpa/devicon/df6431e323547add1b4cf45992913f15286456d3/devicon.min.css">
+
+<div class="row">
+  <div class="col-lg-8 col-md-10 mx-auto">
+
+    <div class="card mb-3">
+      <div class="card-body pt-2">
+        <a href="/#/" class="btn btn-link float-right">
+          <i class="far fa-arrow-alt-circle-left"></i> Back
+        </a>
+        <h5 class="card-title">
+          <span data-fn="languageIcon" data-key="language" class="mr-2 h2"></span>
+          <span data-key="name"></span>
+        </h5>
+        <div class="loading-spinner text-center my-3">
+          <div class="spinner-grow text-dark" role="status">
+            <span class="sr-only">Loading...</span>
+          </div>
+        </div>
+        <h6 class="card-subtitle mb-2 text-muted font-weight-light">
+          Updated:
+          <span data-key="updated_at" data-fn="date"></span>
+        </h6>
+        <p data-key="description" class="card-text"></p>
+        <a data-fn="link" href="" data-key="html_url" target="_blank" class="card-link">
+          <i class="fab fa-github"></i> See code
+        </a>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Recent Commits</h5>
+        <p class="card-text">Here are the latest commits for this repository.</p>
+      </div>
+      <commits class="list-group list-group-flush"></commits>
+    </div>
+    
+  </div>
+</div>
