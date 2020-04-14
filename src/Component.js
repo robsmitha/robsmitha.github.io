@@ -55,11 +55,12 @@ export default class Component {
         if(nodes == null) throw 'No nodes to bind.';
         nodes.forEach(node => {
             if(hasFn(node)){
-                let fn = node.dataset.fn
                 let args = node.dataset.key.includes('.')
                 ? this.fetchFromObject(data, node.dataset.key)
-                : data[node.dataset.key]
-                window[fn](node, args)
+                : data[node.dataset.key];
+                node.dataset.fn.split(',').forEach(fn => {
+                    window[fn](node, args)
+                });
             }
             else{
                 node.innerHTML = node.dataset.key.includes('.')

@@ -1,5 +1,4 @@
 {
-  "homepage": "https://robsmitha.github.io/dist",
   "name": "robsmitha.github.io",
   "version": "1.0.0",
   "description": "",
@@ -7,9 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack-dev-server --open --mode development",
-    "build": "webpack --mode production",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "build": "webpack --mode production"
   },
   "keywords": [],
   "author": "",
@@ -20,7 +17,6 @@
     "@babel/preset-env": "^7.9.5",
     "@babel/register": "^7.9.0",
     "babel-loader": "^8.1.0",
-    "gh-pages": "^2.2.0",
     "webpack": "^4.42.1",
     "webpack-cli": "^3.3.11",
     "webpack-dev-server": "^3.10.3"

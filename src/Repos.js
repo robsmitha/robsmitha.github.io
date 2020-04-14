@@ -10,7 +10,7 @@ export default class Repos extends Component {
   }
   
   loadRepos = () => {
-    json(`https://api.github.com/users/robsmitha/repos?sort=updated&direction=desc`)
+    json(`https://api.github.com/users/robsmitha/repos?sort=pushed&direction=desc`)
     .then(data => {
       var repos = data.filter((el) => el.description !== null && el.description.length > 0);
       this.update(repos, [])
