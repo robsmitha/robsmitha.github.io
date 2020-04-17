@@ -10,7 +10,7 @@ export default class App extends Component {
       this.main = null;
     }
   
-    startApp() {
+    renderApp() {
       this.header = new Header({ 
         root: document.querySelector('header')
       });

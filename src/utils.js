@@ -1,29 +1,37 @@
 
-var _rk = 'rk'
-var responses = new Map()
-if(localStorage.getItem(_rk) !== null) {
-    responses = new Map(JSON.parse(localStorage.getItem(_rk)))
-}
+
+
 export async function json(url, requestinfo) {
-    let data = null
-    if(responses.has(url)){
-        data = responses.get(url)
+    let cache = sessionStorage.getItem('cache') !== null 
+    ? new Map(JSON.parse(sessionStorage.getItem('cache')))
+    : new Map()
+    
+    //check cache
+    if(cache.has(url)){
+        let item = cache.get(url)
+        return item.json 
     }
-    else{
-        const response = await fetch(url)
-        if(response !== undefined && response.ok){
-            data = await response.json();
-            responses.set(url, data)
-            localStorage.setItem(_rk, JSON.stringify(Array.from(responses.entries())))
-        }
+
+    //do request
+    const response = await fetch(url)
+    if(response !== undefined && response.ok){
+        let json = await response.json()
+        cache.set(url, {
+            json: json,
+            cached_at: new Date().getTime()
+        })
+        sessionStorage.setItem('cache', JSON.stringify(Array.from(cache.entries())))
+        return json;
     }
-    return data;
+
+    return null;
 }
 
 export async function text(url){
     const response = await fetch(url);
     return await response.text();
 }
+
 
 window.languageIcon = function (node, language) {
     var icon = '';
