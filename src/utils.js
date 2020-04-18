@@ -1,10 +1,10 @@
 
 
+const cache = sessionStorage.getItem('cache') !== null 
+? new Map(JSON.parse(sessionStorage.getItem('cache')))
+: new Map()
 
 export async function json(url, requestinfo) {
-    let cache = sessionStorage.getItem('cache') !== null 
-    ? new Map(JSON.parse(sessionStorage.getItem('cache')))
-    : new Map()
     
     //check cache
     if(cache.has(url)){
