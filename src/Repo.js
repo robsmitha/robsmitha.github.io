@@ -2,6 +2,7 @@ import Component from './Component.js'
 import Commits from './Commits.js'
 import Languages from './Languages.js'
 import { json } from './utils.js'
+import { sendEvent, who } from './me.js'
 
 
 export default class Repo extends Component {
@@ -12,6 +13,8 @@ export default class Repo extends Component {
     this.languages = null
     this.render('./components/repo.html')
     .then(this.loadRepo)
+
+    sendEvent('view_repo', 'repos', this.id, who())
   }
   
   loadRepo = () => {

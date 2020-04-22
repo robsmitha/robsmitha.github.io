@@ -2,7 +2,8 @@
 import App from './App.js'
 import Home from './Home.js'
 import Repo from './Repo.js'
-import Router from './Router.js';
+import Router from './Router.js'
+import { store } from './me.js'
 
 const main = document.querySelector('main')
 
@@ -20,6 +21,7 @@ router.add(/repo\/(.*)/, (id) => {
 
 var app = new App({ root: main });
 app.renderApp();
+store();
 
 /*
 if (window.Worker) {

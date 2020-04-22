@@ -1,3 +1,5 @@
+import { json, text } from './utils'
+
 const me_key = 'me'
 export function who(){
     return JSON.parse(localStorage.getItem(me_key) || null);
