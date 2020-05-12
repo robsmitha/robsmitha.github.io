@@ -1,26 +1,38 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+//Layouts
+import LayoutRoute from './components/_layout/LayoutRoute';
 
-export default App;
+//Components
+import Home from './components/Home'
+import Repo from './components/Repo'
+import Commit from './components/Commit'
+import {browserHistory, withRouter} from 'react-router';
+//Contexts
+import { ThemeProvider } from './contexts/ThemeContext'
+import { UserProvider } from './contexts/UserContext'
+
+class App extends Component {
+
+  componentWillMount() {
+    this.unlisten = this.props.history.listen((location, action) => {
+      window.scrollTo(0,0)
+    });
+  }
+  componentWillUnmount() {
+      this.unlisten();
+  }
+  render(){
+    return (
+      <ThemeProvider>
+        <UserProvider>
+          <LayoutRoute exact path='/' component={Home} />
+          <LayoutRoute exact path='/repo/:name' component={Repo} />
+          <LayoutRoute exact path='/repo/:name/commit/:sha' component={Commit} />
+        </UserProvider>
+      </ThemeProvider>
+    )
+  }
+}
+export default  withRouter(App)

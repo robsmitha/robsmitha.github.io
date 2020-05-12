@@ -1,0 +1,75 @@
+.text-sm {
+    font-size: .875rem;
+}
+
+.subtitle {
+    margin-bottom: 0;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+.bd-placeholder-img {
+    font-size: 1.125rem;
+    text-anchor: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    width: 32px;
+    height: 32px;
+}
+.commits-listing-padded {
+    padding-left: 39px;
+}
+
+.commits-listing {
+    position: relative;
+    padding-bottom: 20px;
+    margin-bottom: 15px;
+}
+.commit-group-title {
+    margin-top: 15px;
+    margin-left: -34px;
+    color: #586069;
+}
+.commits-listing:before {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 14px;
+    z-index: -1;
+    display: block;
+    width: 2px;
+    content: "";
+    background-color: #eff1f3;
+}
+.commit-group {
+    margin-top: 10px;
+    list-style-type: none;
+}
+.commit-group-title .git-commit {
+    margin-right: 17px;
+    color: #c6cbd1; 
+    background: #fff;
+}
+.git-commit {
+    margin-right: 17px;
+    color: #c6cbd1;
+    background: #fff;
+}
+.hover-animate {
+    transition: all 0.2s ease-in-out;
+}
+.hover-animate:hover, .hover-animate:focus {
+    -webkit-transform: translate3d(0, -2px, 5px);
+    transform: translate3d(0, -2px, 5px);
+}
+.text-linkedin {
+    color: #0084bf!important
+}
+.text-github {
+    color: #24292e!important
+}
+.text-resume {
+    color: #DC3513!important
+}
