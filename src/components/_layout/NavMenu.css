@@ -69,3 +69,14 @@ body {
 .lh-100 { line-height: 1; }
 .lh-125 { line-height: 1.25; }
 .lh-150 { line-height: 1.5; }
+
+.navatar {
+  text-align: center;
+  border: #dee2e6;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 0 1rem rgba(0,0,0,0.15);
+  line-height: 3rem;
+  width: 3.5rem;
+  height: 3.5rem;
+}

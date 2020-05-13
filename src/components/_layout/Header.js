@@ -34,7 +34,7 @@ export default class Header extends Component {
                         </p>
                     </CardHeader>
                     <ListGroup flush>
-                        <Link to={'/'} className="list-group-item list-group-item-action">
+                        <Link to={'/'} className="list-group-item list-group-item-action" hidden={true}>
                             <FontAwesomeIcon icon={faHome} className="text-secondary" />&nbsp;
                             Home
                         </Link>

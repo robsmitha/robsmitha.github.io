@@ -8,6 +8,7 @@ import { faLaptopCode, faQuoteLeft, faQuoteRight } from '@fortawesome/free-solid
 import { Link } from 'react-router-dom';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import ErrorMessage from './_helpers/ErrorMessage';
+import LanguageIcon from './_helpers/LanguageIcon';
 
 export default class Repo extends Component {
     constructor(props){
@@ -131,7 +132,7 @@ export default class Repo extends Component {
                     <Row>
                         {Object.keys(languages.data).map(l => 
                         <Col key={l} className="mb-3 text-md-left text-center">
-                            <Devicon className="bd-placeholder-img mb-2 mr-2 rounded" language={l} />
+                            <LanguageIcon className="bd-placeholder-img mb-2 mr-2 rounded" language={l} />
                             <small className="text-muted lead">{languages.data[l]}</small>
                         </Col>)}
                     </Row>

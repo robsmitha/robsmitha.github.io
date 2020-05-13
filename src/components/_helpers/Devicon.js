@@ -1,28 +1,34 @@
 ﻿﻿import React from 'react';
 
+export const DeviconAmazonWebServicesOriginal = 'amazonwebservices-original'
+export const DeviconCSharpOriginal = 'csharp-original'
+export const DeviconJavaScriptPlain = 'javascript-plain'
+export const DeviconCSS3WordMark = 'css3-original-wordmark'
+export const DeviconHTML5WordMark = 'html5-original-wordmark'
+export const DeviconTypeScriptOriginal = 'typescript-original'
+export const DeviconDeviconOriginalWordmark = 'devicon-original-wordmark'
+export const DeviconLinuxOriginal = 'linux-original'
+export const DeviconBootstrapPlainWordMark = 'bootstrap-plain-wordmark'
+export const DeviconDotNetOriginalWordmark = 'dot-net-original-wordmark'
+export const DeviconDotNetPlain = 'dot-net-plain'
+export const DeviconAngularJSPlain = 'angularjs-plain'
+export const DeviconReactOriginal = 'react-original'
+export const DeviconAndroidOriginal = 'android-original'
+
 const Devicon = props => {
-    let icon = '/devicon/devicon-original-wordmark.svg'
-    const baseUrl = 'https://smitha-cdn.s3.us-east-2.amazonaws.com/Content/vendor/devicons'
-    if(props.language !== undefined && props.language !== null){
-        switch(props.language.toLowerCase()){
-            case 'c#':
-                icon = '/csharp/csharp-original.svg'
-                break;
-            case 'javascript':
-                icon = '/javascript/javascript-plain.svg'
-                break;
-            case 'css':
-                icon = '/css3/css3-original-wordmark.svg'
-                break;
-            case 'html':
-                icon = '/html5/html5-original-wordmark.svg'
-                break;
-            case 'typescript':
-                icon = '/typescript/typescript-original.svg'
-                break;
-        }
+    let icon = ''
+    switch(props.icon){
+        case undefined:
+        case null: 
+        case '': 
+            icon = DeviconDeviconOriginalWordmark
+            break;
+        default:
+            icon = props.icon
+            break;
     }
-    return <img src={baseUrl + icon} alt={props.language} {...props} />
+    const baseUrl = 'https://smitha-cdn.s3.us-east-2.amazonaws.com/Content/vendor/devicons/'
+    return <img src={baseUrl + icon + '.svg'} alt={props.icon} {...props} />
 }
 
 export default Devicon

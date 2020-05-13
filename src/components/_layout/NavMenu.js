@@ -41,13 +41,13 @@ export default class NavMenu extends Component {
             <section className="main-nav-header" style={{paddingTop: this.state.navHeight + 'px'}}>
                 <Navbar className="main-nav navbar navbar-expand-lg fixed-top navbar-light shadow bg-light p-3">
                     <Container>
-                        <NavbarBrand className="mr-auto mr-lg-0 d-block d-md-none" tag={Link} to="/">
+                        <NavbarBrand className="mr-auto mr-lg-0" tag={Link} to="/">
                             <div className="media">
-                            <img className="avatar" src={!user.loading && user.success && user.data.avatar_url !== null
+                            <img className="navatar img-fluid d-block d-md-none rounded" 
+                                src={!user.loading && user.success && user.data.avatar_url !== null
                                 ?  user.data.avatar_url
-                                : 'https://smitha-cdn.s3.us-east-2.amazonaws.com/Content/images/robsmitha.png'} 
-                                className="rounded-circle img-fluid" 
-                                style={{ width: '4rem'}} />&nbsp;
+                                : 'https://smitha-cdn.s3.us-east-2.amazonaws.com/Content/images/robsmitha.png'}
+                                 />&nbsp;
                                 <div className="media-body">
                                     <span className="d-block">Rob Smitha</span>
                                     <small className="text-muted d-block">Software Engineer</small>
@@ -60,7 +60,7 @@ export default class NavMenu extends Component {
                         <div style={{ top: this.state.navHeight + 'px' }} 
                         className={'navbar-collapse offcanvas-collapse bg-light '.concat(!this.state.collapsed ? ' open' : '')} 
                         id="navbarsExampleDefault">
-                            <ul className="navbar-nav mr-auto">
+                            <ul className="navbar-nav mr-auto" hidden={true}>
                                 <NavItem>
                                     <NavLink tag={Link} to={'/'} onClick={this.collapseNavbar}>
                                         <FontAwesomeIcon icon={faHome} className="text-secondary" />&nbsp;Home

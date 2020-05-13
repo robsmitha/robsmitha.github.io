@@ -3,10 +3,11 @@ import { UserConsumer } from './../contexts/UserContext';
 import './Home.css'
 import { gitHubService } from '../services/github.service';
 import Loading from './../components/_helpers/Loading'
-import Devicon from './../components/_helpers/Devicon'
 import { Card, Col, CardBody, Row } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import ErrorMessage from './_helpers/ErrorMessage';
+import LanguageIcon from './_helpers/LanguageIcon';
+import ResourceIcon from './_helpers/ResourceIcon';
 
 export default class Home extends Component {
     constructor(props){
@@ -45,6 +46,7 @@ export default class Home extends Component {
 
     async getStarred(){
         const data = await gitHubService.getStarred()
+        console.log(data)
         this.setState({
             starred: {
                 loading: false,
@@ -92,7 +94,7 @@ export default class Home extends Component {
                                 <Link className="text-decoration-none" to={'/repo/:name'.replace(':name', r.name)}>
                                     <Card className="h-100 text-center shadow border-0">
                                         <CardBody>
-                                            <Devicon className="bd-placeholder-img mb-2 mr-2 rounded" language={r.language} />
+                                            <LanguageIcon className="bd-placeholder-img mb-2 mr-2 rounded" language={r.language} />
                                             <strong className="text-gray-dark">{r.name}</strong>
                                             <p className="pb-3 mb-0 small lh-125 text-muted">
                                                 {r.description}
@@ -121,7 +123,7 @@ export default class Home extends Component {
                             : starred.data.map((r, index) =>
                             <Col xs="6" sm="auto" key={r.name} className="mb-4 text-center">
                                 <a target="_blank" href={r.html_url} rel="noopener noreferrer" className="text-muted">
-                                    <Devicon className="bd-placeholder-img mb-2 rounded" language={r.language} />
+                                    <ResourceIcon className="bd-placeholder-img mb-2 rounded" resource={r.name} language={r.language} />
                                     <small className="d-block text-gray-dark">{r.name}</small>
                                 </a>
                             </Col>)}
