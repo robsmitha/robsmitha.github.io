@@ -12,15 +12,19 @@ export async function get(url) {
     }
 
     //do request
-    const response = await fetch(url)
-    if(response !== undefined && response.ok){
-        let json = await response.json()
-        cache.set(url, {
-            json: json,
-            cached_at: new Date().getTime()
-        })
-        sessionStorage.setItem('cache', JSON.stringify(Array.from(cache.entries())))
-        return json;
+    try {
+        const response = await fetch(url)
+        if(response !== undefined && response.ok){
+            let json = await response.json()
+            cache.set(url, {
+                json: json,
+                cached_at: new Date().getTime()
+            })
+            sessionStorage.setItem('cache', JSON.stringify(Array.from(cache.entries())))
+            return json;
+        }
+    } catch (error) {
+        console.log(error)
     }
 
     return null;

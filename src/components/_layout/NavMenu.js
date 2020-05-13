@@ -41,7 +41,7 @@ export default class NavMenu extends Component {
             <section className="main-nav-header" style={{paddingTop: this.state.navHeight + 'px'}}>
                 <Navbar className="main-nav navbar navbar-expand-lg fixed-top navbar-light shadow bg-light p-3">
                     <Container>
-                        <NavbarBrand className="mr-auto mr-lg-0 d-block d-sm-none" tag={Link} to="/">
+                        <NavbarBrand className="mr-auto mr-lg-0 d-block d-md-none" tag={Link} to="/">
                             <div className="media">
                             <img className="avatar" src={!user.loading && user.success && user.data.avatar_url !== null
                                 ?  user.data.avatar_url

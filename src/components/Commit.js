@@ -88,7 +88,7 @@ export default class Commit extends Component {
                     </p>
                     <ListGroup flush>
                         {commit.data.files.map((f, index) =>
-                        <a target="_blank" rel="norefeffer noopener" href={f.blob_url} className="list-group-item list-group-item-action px-1" key={f.sha}>
+                        <a target="_blank" rel="norefeffer noopener" href={f.blob_url} className="list-group-item list-group-item-action px-1" key={index}>
                             <span className="d-block">
                                 <small className="text-nowrap"><FontAwesomeIcon icon={faFileCode} />&nbsp;</small>
                                 <span className="text-break">{f.filename}</span>

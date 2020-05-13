@@ -1,7 +1,16 @@
+
+
 .avatar.avatar-xxl {
-    width: 10rem;
-    min-width: 10rem;
-    height: 10rem;
+    width: 7rem;
+    min-width: 7rem;
+    height: 7rem;
+}
+@media (min-width: 768.98px) {
+    .avatar.avatar-xxl {
+      width: 10rem;
+      min-width: 10rem;
+      height: 10rem;
+  }
 }
 
 .avatar {

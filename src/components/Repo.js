@@ -159,7 +159,7 @@ export default class Repo extends Component {
                             <div className="commit-group pb-3 mb-0 small lh-125">
                                 <ListGroup>
                                     {c.commits.map(gc => 
-                                        <Link key={gc.sha} className="list-group-item list-group-item-action" to={'/repo/:name/commit/:sha'.replace(':name', repo.data.name).replace(':sha', gc.sha)}>
+                                        <Link key={gc.sha} className="list-group-item list-group-item-action" to={'/repo/:name/commit/:sha'.replace(':name', name).replace(':sha', gc.sha)}>
                                             <div className="media">
                                                 <img src={gc.author.avatar_url} className="bd-placeholder-img mb-2 mr-2 rounded" />&nbsp;
                                                 <div className="media-body">
