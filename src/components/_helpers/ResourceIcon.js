@@ -6,7 +6,10 @@ import {
     DeviconDotNetPlain,
     DeviconAngularJSPlain,
     DeviconReactOriginal,
-    DeviconAndroidOriginal
+    DeviconAndroidOriginal,
+    DeviconVueJSOriginal,
+    DeviconYarnOriginal,
+    DeviconGoogleOriginal
 } from './Devicon';
 import MappedIcon from './MappedIcon';
 import LanguageIcon from './LanguageIcon';
@@ -21,7 +24,12 @@ const ResourceIcon = props => {
         ['aspnetcore', DeviconDotNetPlain],
         ['angular', DeviconAngularJSPlain],
         ['react', DeviconReactOriginal],
-        ['react', DeviconReactOriginal],
+        ['react-stripe-elements', DeviconReactOriginal],
+        ['vue', DeviconVueJSOriginal],
+        ['cli', DeviconVueJSOriginal],
+        ['vuetify', DeviconVueJSOriginal],
+        ['yarn', DeviconYarnOriginal],
+        ['grpc', DeviconGoogleOriginal],
         ['clover-android-sdk', DeviconAndroidOriginal]
     ])
     if(resource !== undefined && resource !== null && map.has(resource)) {

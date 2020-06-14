@@ -104,7 +104,7 @@ export default class Commit extends Component {
                             </div>
                         </a>
                         )}
-                        <a href={commit.data.html_url} type="button" className="list-group-item list-group-item-action" target="_blank" rel="noopener noreferrer">
+                        <a href={commit.data.html_url} className="list-group-item list-group-item-action" target="_blank" rel="noopener noreferrer">
                             <FontAwesomeIcon icon={faGithub} />&nbsp;See full commit on GitHub
                         </a>
                     </ListGroup>

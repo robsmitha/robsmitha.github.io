@@ -4,7 +4,7 @@ import { Col, Row, ListGroup } from 'reactstrap';
 import Loading from './_helpers/Loading';
 import Devicon from './_helpers/Devicon';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faLaptopCode, faQuoteLeft, faQuoteRight } from '@fortawesome/free-solid-svg-icons'
+import { faLaptopCode, faQuoteLeft, faQuoteRight, faPlay } from '@fortawesome/free-solid-svg-icons'
 import { Link } from 'react-router-dom';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import ErrorMessage from './_helpers/ErrorMessage';
@@ -112,11 +112,15 @@ export default class Repo extends Component {
                     <p className="lead mt-2">
                         {repo.data.description}
                     </p>
+                    {repo.data.homepage !== null && repo.data.homepage.length > 0 ? 
+                        <a className="btn btn-success mr-3" href={repo.data.homepage} target="_blank" rel="noopener noreferrer" >
+                            <FontAwesomeIcon icon={faPlay} />&nbsp;See Website
+                        </a> 
+                        : ''}
                     <a href={repo.data.html_url} type="button" className="btn btn-light" target="_blank" rel="noopener noreferrer">
-                        <FontAwesomeIcon icon={faGithub} />&nbsp;Continue to GiHub
+                        <FontAwesomeIcon icon={faGithub} />&nbsp;Continue to GitHub
                     </a>
                     <hr />
-
                 </div>}
                 </div>
                 <div className="mb-3">
@@ -162,7 +166,7 @@ export default class Repo extends Component {
                                     {c.commits.map(gc => 
                                         <Link key={gc.sha} className="list-group-item list-group-item-action" to={'/repo/:name/commit/:sha'.replace(':name', name).replace(':sha', gc.sha)}>
                                             <div className="media">
-                                                <img src={gc.author.avatar_url} className="bd-placeholder-img mb-2 mr-2 rounded" />&nbsp;
+                                                <img src={gc.author !== null ? gc.author.avatar_url : gc.committer !== null ? gc.committer.avatar_url : ''} className="bd-placeholder-img mb-2 mr-2 rounded" />&nbsp;
                                                 <div className="media-body">
                                                     <blockquote className="blockquote">
                                                         <small className="d-block mb-2 text-break">

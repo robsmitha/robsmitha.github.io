@@ -3,11 +3,14 @@ import { UserConsumer } from './../contexts/UserContext';
 import './Home.css'
 import { gitHubService } from '../services/github.service';
 import Loading from './../components/_helpers/Loading'
-import { Card, Col, CardBody, Row } from 'reactstrap';
+import { Col, Row, Card, CardBody } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import ErrorMessage from './_helpers/ErrorMessage';
-import LanguageIcon from './_helpers/LanguageIcon';
 import ResourceIcon from './_helpers/ResourceIcon';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlay, faCodeBranch, faTerminal, faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
+import { faGithub } from '@fortawesome/free-brands-svg-icons';
+import LanguageIcon from './_helpers/LanguageIcon';
 
 export default class Home extends Component {
     constructor(props){
@@ -46,7 +49,6 @@ export default class Home extends Component {
 
     async getStarred(){
         const data = await gitHubService.getStarred()
-        console.log(data)
         this.setState({
             starred: {
                 loading: false,
@@ -66,7 +68,7 @@ export default class Home extends Component {
                         Welcome
                     </p>
                     <h2 className="mb-4">
-                        {!user.loading && user.success
+                        {!user.loading && user.success && user.data.name !== null
                         ? <span>Hello, I'm {user.data.name.split(' ')[0]}!</span>
                         : <span>Hello, I'm Rob!</span>}
                     </h2>
@@ -90,18 +92,20 @@ export default class Home extends Component {
                                 <ErrorMessage message="Could not load repos" />
                             </Col>
                             : repos.data.map((r, index) =>
-                            <Col md="4" key={r.name} className="mb-4 hover-animate">
-                                <Link className="text-decoration-none" to={'/repo/:name'.replace(':name', r.name)}>
-                                    <Card className="h-100 text-center shadow border-0">
-                                        <CardBody>
-                                            <LanguageIcon className="bd-placeholder-img mb-2 mr-2 rounded" language={r.language} />
-                                            <strong className="text-gray-dark">{r.name}</strong>
-                                            <p className="pb-3 mb-0 small lh-125 text-muted">
-                                                {r.description}
-                                            </p>
-                                        </CardBody>
-                                    </Card>
-                                </Link>
+                            <Col md="4" key={r.name} className="mb-5">
+                                <div className="h-100 d-flex flex-column">
+                                    
+                                    <Link className="d-block lead border-bottom text-primary text-decoration-none hover-animate mb-3" 
+                                    to={'/repo/:name'.replace(':name', r.name)}>
+                                        <LanguageIcon className="bd-placeholder-img mb-2 mr-2 rounded" language={r.language} />
+                                            &nbsp;
+                                            <span className="sr-only">See repo information about {r.name}</span>
+                                            {r.name}
+                                    </Link>
+                                        <p className="pb-1 mb-2 small lh-125 text-muted">
+                                            {r.description}
+                                        </p>
+                                    </div>
                             </Col>)}
                         </Row>
                     </div>
@@ -113,21 +117,35 @@ export default class Home extends Component {
                     Resources
                     </h3>
                     <div className="mb-3">
-                        <Row>
+                    <div className="card-columns">
                             {starred.loading
                             ? <Loading message="Loading tools, please wait.." />
                             : !starred.success
-                            ? <Col>
+                            ? <Card>
                                 <ErrorMessage message="Could not load tools." />
-                            </Col>
-                            : starred.data.map((r, index) =>
-                            <Col xs="6" sm="auto" key={r.name} className="mb-4 text-center">
-                                <a target="_blank" href={r.html_url} rel="noopener noreferrer" className="text-muted">
-                                    <ResourceIcon className="bd-placeholder-img mb-2 rounded" resource={r.name} language={r.language} />
-                                    <small className="d-block text-gray-dark">{r.name}</small>
-                                </a>
-                            </Col>)}
-                        </Row>
+                            </Card>
+                            : starred.data.sort((a,b) => new Date(b.updated_at) - new Date(a.updated_at))
+                            .map((r, index) =>
+                            <Card key={r.name}>
+                                <CardBody>                                
+                                    <p className="small border-bottom">
+                                        <ResourceIcon className="bd-placeholder-img mb-2 mr-2 rounded" resource={r.name} language={r.language} />
+                                        {r.name} 
+                                    </p>
+                                    <p className="pb-1 mb-2 small lh-125 text-muted">
+                                        {r.description}
+                                    </p>                         
+                                    <div className="mt-auto text-right">
+                                        <a target="_blank" 
+                                        href={r.html_url} 
+                                        rel="noopener noreferrer">
+                                            <span className="sr-only">See {r.name} on GitHub.com</span>
+                                            <FontAwesomeIcon icon={faExternalLinkAlt} />
+                                        </a>
+                                    </div>
+                                </CardBody>
+                            </Card>)}
+                        </div>
                     </div>
                 </div>
                 )}

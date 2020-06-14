@@ -15,10 +15,10 @@ export default class Header extends Component {
         return(
             <UserConsumer>
                 {({ user }) => (
-                    <Card className="border-0 shadow mb-5 mb-lg-0">
-                    <CardHeader className="bg-gray-100 py-4 border-0 text-center">
+                    <Card className="border-0 mb-5 mb-lg-0">
+                    <CardHeader className="bg-white py-4 border-0 text-center">
                         <Link to={'/'}>
-                            <img className="d-block avatar avatar-xxl p-2 mb-2 mx-auto" src={!user.loading && user.success && user.data.avatar_url !== null
+                            <img className="d-block avatar avatar-xxl p-2 mb-2 mx-auto rounded img-thumbnail hover-animate" src={!user.loading && user.success && user.data.avatar_url !== null
                                 ?  user.data.avatar_url
                                 : 'https://smitha-cdn.s3.us-east-2.amazonaws.com/Content/images/robsmitha.png'} loading="lazy" />
                         </Link>

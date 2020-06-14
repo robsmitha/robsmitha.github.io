@@ -10,7 +10,7 @@ import MappedIcon from './MappedIcon';
 
 
 const LanguageIcon = props => {
-    const language = props.language !== undefined ? props.language.toLowerCase() : null
+    const language = props.language !== undefined  && props.language !== null ? props.language.toLowerCase() : null
     const map = new Map([
         ['c#', DeviconCSharpOriginal],
         ['javascript', DeviconJavaScriptPlain],

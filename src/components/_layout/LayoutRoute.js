@@ -10,10 +10,10 @@ const Layout = ({ children }) => (
         <NavMenu />
         <Container className="py-3 py-md-4">
             <Row>
-                <Col md="3" className="d-none d-md-block">
+                <Col lg="3" md="4" className="d-none d-md-block">
                     <Header />
                 </Col>
-                <Col md="9">
+                <Col lg="9" md="8">
                     {children}
                 </Col>
             </Row>

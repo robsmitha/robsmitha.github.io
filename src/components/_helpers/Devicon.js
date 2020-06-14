@@ -14,6 +14,9 @@ export const DeviconDotNetPlain = 'dot-net-plain'
 export const DeviconAngularJSPlain = 'angularjs-plain'
 export const DeviconReactOriginal = 'react-original'
 export const DeviconAndroidOriginal = 'android-original'
+export const DeviconYarnOriginal = 'yarn-original'
+export const DeviconVueJSOriginal = 'vuejs-original'
+export const DeviconGoogleOriginal = 'google-original'
 
 const Devicon = props => {
     let icon = ''
