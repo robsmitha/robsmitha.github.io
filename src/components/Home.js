@@ -8,8 +8,7 @@ import { Link } from 'react-router-dom';
 import ErrorMessage from './_helpers/ErrorMessage';
 import ResourceIcon from './_helpers/ResourceIcon';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlay, faCodeBranch, faTerminal, faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
-import { faGithub } from '@fortawesome/free-brands-svg-icons';
+import { faExternalLinkAlt, faArrowCircleRight } from '@fortawesome/free-solid-svg-icons';
 import LanguageIcon from './_helpers/LanguageIcon';
 
 export default class Home extends Component {
@@ -30,6 +29,7 @@ export default class Home extends Component {
     }
 
     componentDidMount(){
+        document.title = "Rob Smitha - Home Page"
         this.getUserRepos()
         this.getStarred()
     }
@@ -85,27 +85,32 @@ export default class Home extends Component {
                     <h3 className="mb-4 h4">Repositories</h3>
                     <div className="mb-3">
                         <Row>
-                            {repos.loading
+                        {repos.loading
                             ? <Loading message="Loading repos, please wait.." />
                             : !repos.success
                             ? <Col>
                                 <ErrorMessage message="Could not load repos" />
                             </Col>
                             : repos.data.map((r, index) =>
-                            <Col md="4" key={r.name} className="mb-5">
-                                <div className="h-100 d-flex flex-column">
-                                    
-                                    <Link className="d-block lead border-bottom text-primary text-decoration-none hover-animate mb-3" 
-                                    to={'/repo/:name'.replace(':name', r.name)}>
-                                        <LanguageIcon className="bd-placeholder-img mb-2 mr-2 rounded" language={r.language} />
-                                            &nbsp;
-                                            <span className="sr-only">See repo information about {r.name}</span>
-                                            {r.name}
-                                    </Link>
-                                        <p className="pb-1 mb-2 small lh-125 text-muted">
-                                            {r.description}
+                            <Col md="4" key={r.name} className="mb-4">
+                                <Card className="h-100">
+                                    <CardBody className="d-flex flex-column" aria-labelledby={'repo-name-'.concat(index)} aria-describedby={'repo-description-'.concat(index)}>                                
+                                        <p id={'repo-name-'.concat(index)}>
+                                            {r.name}&nbsp;<LanguageIcon className="bd-placeholder-img float-right" language={r.language} />
                                         </p>
-                                    </div>
+                                        
+                                        <p id={'repo-description-'.concat(index)} className="pb-1 mb-2 small lh-125 text-muted">
+                                            {r.description}
+                                        </p>     
+
+                                        <div className="mt-auto">
+                                            <Link className="hover-animate d-block" to={'/repo/:name'.replace(':name', r.name)}>
+                                                Project Details<span className="sr-only">for {r.name}</span>
+                                                <FontAwesomeIcon className="float-right mt-1" icon={faArrowCircleRight} />
+                                            </Link>
+                                        </div>
+                                    </CardBody>
+                                </Card>
                             </Col>)}
                         </Row>
                     </div>
@@ -127,19 +132,19 @@ export default class Home extends Component {
                             : starred.data.sort((a,b) => new Date(b.updated_at) - new Date(a.updated_at))
                             .map((r, index) =>
                             <Card key={r.name}>
-                                <CardBody>                                
-                                    <p className="small border-bottom">
-                                        <ResourceIcon className="bd-placeholder-img mb-2 mr-2 rounded" resource={r.name} language={r.language} />
+                                <CardBody aria-labelledby={'resource-name-'.concat(index)} aria-describedby={'resource-description-'.concat(index)}>                                
+                                    <p id={'resource-name-'.concat(index)} className="small">
                                         {r.name} 
+                                        <ResourceIcon className="bd-placeholder-img float-right" resource={r.name} language={r.language} />
                                     </p>
-                                    <p className="pb-1 mb-2 small lh-125 text-muted">
+                                    <p id={'resource-description-'.concat(index)} className="pb-1 mb-2 small lh-125 text-muted">
                                         {r.description}
                                     </p>                         
                                     <div className="mt-auto text-right">
                                         <a target="_blank" 
                                         href={r.html_url} 
                                         rel="noopener noreferrer">
-                                            <span className="sr-only">See {r.name} on GitHub.com</span>
+                                            <span className="sr-only">{r.name} repository on GitHub.com</span>
                                             <FontAwesomeIcon icon={faExternalLinkAlt} />
                                         </a>
                                     </div>

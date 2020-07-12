@@ -31,7 +31,7 @@ const Devicon = props => {
             break;
     }
     const baseUrl = 'https://smitha-cdn.s3.us-east-2.amazonaws.com/Content/vendor/devicons/'
-    return <img src={baseUrl + icon + '.svg'} alt={props.icon} {...props} />
+    return <img src={baseUrl + icon + '.svg'} alt={'Developer icon '.concat(props.ikey)} {...props} />
 }
 
 export default Devicon

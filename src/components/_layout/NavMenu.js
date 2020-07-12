@@ -84,7 +84,7 @@ export default class NavMenu extends Component {
                                 </li>
                                 <li className="nav-item">
                                     <a href="https://smitha-cdn.s3.us-east-2.amazonaws.com/Content/files/Rob+Smitha+Resume.pdf" target="_blank" rel="noopener noreferrer" className="nav-link">
-                                    <FontAwesomeIcon icon={faFilePdf} className="text-resume" />&nbsp;Resume
+                                    <FontAwesomeIcon icon={faFilePdf} className="text-resume" />&nbsp;Résumé
                                     </a>
                                 </li>
                             </ul>

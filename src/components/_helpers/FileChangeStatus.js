@@ -18,7 +18,7 @@ const FileChangeStatus = props => {
         break;
         default: break;
     }
-    return <Badge color={color} {...props}>{props.status}</Badge>
+    return <span><span className="sr-only">Status </span><Badge color={color} {...props}>{props.status}</Badge></span>
 }
 
 export default FileChangeStatus

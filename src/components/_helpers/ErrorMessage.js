@@ -15,7 +15,7 @@ const ErrorMessage = props => {
             <Col xs="12">
                 <Row className="h-100 justify-content-center align-items-center">
                     <Col>
-                        <p className="lead mt-2 text-muted text-center">
+                        <p className="lead mt-2 text-muted text-center" aria-label={message}>
                             <FontAwesomeIcon icon={faExclamationTriangle} />&nbsp;
                             {message}
                         </p>

@@ -80,3 +80,26 @@ body {
   width: 3.5rem;
   height: 3.5rem;
 }
+
+.skip-to-content-link {
+  left:-999px;
+    position:absolute;
+    top:auto;
+    width:1px;
+    height:1px;
+    overflow:hidden;
+    z-index:-999;
+}
+
+.skip-to-content-link:focus, .skip-to-content-link:active {
+  left: auto;
+  top: auto;
+  width: 30%;
+  height: auto;
+  overflow:auto;
+  margin: 10px 35%;
+  padding:5px;
+  text-align:center;
+  font-size:1.2em;
+  z-index:1031;
+}

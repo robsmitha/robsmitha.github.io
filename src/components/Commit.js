@@ -5,8 +5,8 @@ import UnDraw from './_helpers/UnDraw';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Link } from 'react-router-dom';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
-import { faPlusSquare, faPlus, faMinus, faFileCode } from '@fortawesome/free-solid-svg-icons';
-import { Badge, ListGroup } from 'reactstrap';
+import { faPlus, faMinus, faFileCode } from '@fortawesome/free-solid-svg-icons';
+import { ListGroup } from 'reactstrap';
 import FileChangeStatus from './_helpers/FileChangeStatus';
 
 export default class Commit extends Component {
@@ -24,6 +24,7 @@ export default class Commit extends Component {
     }
 
     componentDidMount(){
+        document.title = `Rob Smitha - Commit ${this.state.sha}`
         this.getCommit()
     }
     
@@ -45,7 +46,11 @@ export default class Commit extends Component {
             <div className="h-100">
                 <div className="mb-4">
                     <Link to={'/'}>Home</Link>&nbsp;&minus;&nbsp;
-                    <Link to={'/repo/:name'.replace(':name', name)}>{name}</Link>&nbsp;&minus;&nbsp;<span className="text-break">{sha}</span>
+                    <Link to={'/repo/:name'.replace(':name', name)}>{name}</Link>&nbsp;&minus;&nbsp;
+                    <span className="text-break" aria-hidden="true">
+                        <span className="sr-only">Commit sha</span>
+                        {sha}
+                    </span>
                 </div>
                 <div className="mb-3">
                 <p className="subtitle text-sm text-primary">
@@ -68,10 +73,11 @@ export default class Commit extends Component {
                         Message
                     </h2>
 
-                    <blockquote className="blockquote">
-                        <p className="mb-0 lead">{commit.data.commit.message}</p>
-                        <div className="blockquote-footer">{commit.data.commit.committer.name} on&nbsp;
-                            <cite title="Commited on">{new Date(commit.data.commit.committer.date).toLocaleString()}</cite>
+                    <blockquote className="blockquote" aria-labelledby="commit-label" aria-describedby="commit-message">
+                        <p id="commit-message" className="mb-0 lead">{commit.data.commit.message}</p>
+                        <div id="commit-label" className="blockquote-footer">
+                            {commit.data.commit.committer.name}<span className="sr-only">commit message</span> on&nbsp;
+                            <cite>{new Date(commit.data.commit.committer.date).toLocaleString()}</cite>
                         </div>
                     </blockquote>
                     <hr />
@@ -81,25 +87,30 @@ export default class Commit extends Component {
                     <h2 className="d-block mb-4">
                         Changes
                     </h2>
-                    <p className="lead mt-2">
-                        Showing <strong>{commit.data.files.length} changed files </strong> 
-                        with <strong className="text-success">{commit.data.stats.additions} additions </strong> 
-                        and <strong className="text-danger">{commit.data.stats.deletions} deletions.</strong>
-                    </p>
+                    <div aria-labelledby="commit-statistics">
+                        <p className="lead mt-2" id="commit-statistics">
+                            Showing <strong>{commit.data.files.length} changed files </strong> 
+                            with <strong className="text-success">{commit.data.stats.additions} additions </strong> 
+                            and <strong className="text-danger">{commit.data.stats.deletions} deletions.</strong>
+                        </p>
+                    </div>
                     <ListGroup flush>
                         {commit.data.files.map((f, index) =>
-                        <a target="_blank" rel="norefeffer noopener" href={f.blob_url} className="list-group-item list-group-item-action px-1" key={index}>
+                        <a target="_blank" rel="norefeffer noopener" href={f.blob_url} className="list-group-item list-group-item-action px-1" key={index}
+                        aria-labeledby={'file-name-'.concat(index)} aria-describedby={'file-changes-'.concat(index)}>
                             <span className="d-block">
                                 <small className="text-nowrap"><FontAwesomeIcon icon={faFileCode} />&nbsp;</small>
                                 <span className="text-break">{f.filename}</span>
                             </span>
-                            <div>
+                            <div id={'file-changes-'.concat(index)}>
                                 <FileChangeStatus status={f.status} />&nbsp;
                                 <span className="text-success">
                                     <FontAwesomeIcon icon={faPlus} />&nbsp;{f.additions}&nbsp;
+                                    <span className="sr-only">additions</span>
                                 </span>
                                 <span className="text-danger">
                                     <FontAwesomeIcon icon={faMinus} />&nbsp;{f.deletions}
+                                    <span className="sr-only">deletions</span>
                                 </span>
                             </div>
                         </a>

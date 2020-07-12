@@ -35,6 +35,6 @@ const UnDraw = props => {
             svg = props.svg
             break;
     }
-    return <img width={width} src={baseUrl + svg + '.svg'} alt={props.svg} {...props} />
+    return <img width={width} src={baseUrl + svg + '.svg'} alt="" {...props} />
 }
 export default UnDraw
