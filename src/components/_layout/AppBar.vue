@@ -87,29 +87,22 @@
         app
         dark
         >
-            <v-tooltip bottom>
-                <template v-slot:activator="{ on, attrs }">
-                    <v-btn
-                        icon
-                        large
-                        class="ml-md-4 ml-2"
-                        to="/"
-                        v-bind="attrs"
-                        v-on="on"
-                    >
-                    <v-avatar
-                        size="2.8rem"
-                        item
-                        >
-                        <v-img
-                            src="https://smitha-cdn.s3.us-east-2.amazonaws.com/Content/images/robsmitha-avatar-2.png"
-                            alt="Rob Smitha"
-                        ></v-img>
-                        </v-avatar>
-                    </v-btn>
-                </template>
-                Home
-            </v-tooltip>
+            <v-btn
+                icon
+                large
+                class="ml-md-4 ml-2"
+                to="/"
+            >
+                <v-avatar
+                size="2.8rem"
+                item
+                >
+                <v-img
+                    src="https://smitha-cdn.s3.us-east-2.amazonaws.com/Content/images/robsmitha-avatar-2.png"
+                    alt="Rob Smitha"
+                ></v-img>
+                </v-avatar>
+            </v-btn>
         <v-toolbar-title
             class="ml-0 pl-md-4 pl-2"
         >
@@ -125,6 +118,7 @@
 
 <script>
 import { mapState } from 'vuex'
+import socialmedia from './../_helpers/socialmedia'
   export default {
     computed: {
         ...mapState({
@@ -154,11 +148,7 @@ import { mapState } from 'vuex'
           'icon-alt': 'mdi-chevron-down',
           text: 'External Links',
           model: true,
-          children: [
-            { icon: 'mdi-github', text: 'GitHub', href: 'https://github.com/robsmitha' },
-            { icon: 'mdi-linkedin', text: 'LinkedIn', href: 'https://www.linkedin.com/in/robsmitha/' },
-            { icon: 'mdi-file-account', text: 'Résumé', href: 'https://smitha-cdn.s3.us-east-2.amazonaws.com/Content/files/Rob+Smitha+Resume.pdf' },
-          ],
+          children: socialmedia,
         },
         {
           icon: 'mdi-chevron-up',

@@ -1,9 +1,9 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import Home from './../components/Home';
-import About from './../components/About';
-import Repo from './../components/Repo';
-import Blog from './../components/Blog';
+import Home from './../components/home/Home';
+import About from './../components/about/About';
+import Repo from './../components/repo/Repo';
+import Blog from './../components/blog/Blog';
 import goTo from 'vuetify/es5/services/goto'
 
 Vue.use(VueRouter);

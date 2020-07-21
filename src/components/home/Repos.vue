@@ -1,11 +1,11 @@
 <template>
-  <div>
+<div>
     <v-row v-if="loading">
-      <v-col v-for="i in 8" :key="i"
+      <v-col v-for="i in 6" :key="i"
         cols="12"
-        xl="2"
-        md="3"
-        sm="4">
+        xl="3"
+        md="4"
+        sm="6">
         <v-skeleton-loader
           ref="skeleton"
           :type="type"
@@ -15,20 +15,20 @@
     </v-row>
     <v-row v-else>
       <v-col
-        v-for="repo in starred"
+        v-for="repo in repos"
         :key="repo.name"
         cols="12"
-        xl="2"
-        md="3"
-        sm="4">
-        <RepoItem :repo="repo" :isExternalLink="true" />
+        xl="3"
+        md="4"
+        sm="6">
+        <RepoItem :repo="repo" />
       </v-col>
     </v-row>
-  </div>
+</div>
 </template>
 
 <script>
-import RepoItem from './RepoItem'
+import RepoItem from './../_helpers/RepoItem'
 import { mapState } from 'vuex'
 
 export default {
@@ -36,18 +36,18 @@ export default {
     RepoItem
   },
   data: () => ({
-    type: 'list-item-two-line'
+    type: 'article'
   }),
   computed: {
     ...mapState({
-      starred: state => state.github.starred
+      repos: state => state.github.repos
     }),
     loading(){
-      return this.starred === null
+      return this.repos === null
     }
   },
-  mounted () {
-    this.$store.dispatch('github/getStarred')
+  created () {
+    this.$store.dispatch('github/getRepos')
   },
 }
 </script>

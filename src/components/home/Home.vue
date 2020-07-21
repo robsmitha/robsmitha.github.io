@@ -65,9 +65,10 @@
 </template>
 
 <script>
-import Repos from './_helpers/Repos'
-import Starred from './_helpers/Starred'
+import Repos from './Repos'
+import Starred from './Starred'
 import { mapState } from 'vuex'
+import socialmedia from './../_helpers/socialmedia'
 
 export default {
   components: {
@@ -75,23 +76,7 @@ export default {
     Starred
   },
   data: () => ({
-    items: [
-      {
-        icon: 'mdi-github',
-        color: 'dark',
-        href: 'https://github.com/robsmitha'
-      },
-      {
-        icon: 'mdi-linkedin',
-        color: 'blue',
-        href: 'https://www.linkedin.com/in/robsmitha/'
-      },
-      {
-        icon: 'mdi-file-account',
-        color: 'red',
-        href: 'https://smitha-cdn.s3.us-east-2.amazonaws.com/Content/files/Rob+Smitha+Resume.pdf'
-      }
-    ]
+    items: socialmedia
   }),
   computed: {
     ...mapState({

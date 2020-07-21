@@ -22,7 +22,7 @@
       </v-card-text>
 
       <v-card-text class=" pt-0">
-         This site is built with Vuetify.
+         This site was handmade with <a class="text-decoration-none white--text" href="https://vuetifyjs.com/en/" target="_blank" rel="noopener noreferrer">Vuetify.</a>
       </v-card-text>
 
       <v-divider></v-divider>
@@ -35,22 +35,10 @@
 </template>
 
 <script>
+import socialmedia from './../_helpers/socialmedia'
 export default {
     data: () => ({
-        items: [
-        {
-            icon: 'mdi-github',
-            href: 'https://github.com/robsmitha'
-        },
-        {
-            icon: 'mdi-linkedin',
-            href: 'https://www.linkedin.com/in/robsmitha/'
-        },
-        {
-            icon: 'mdi-file-account',
-            href: 'https://smitha-cdn.s3.us-east-2.amazonaws.com/Content/files/Rob+Smitha+Resume.pdf'
-        }
-    ]
+        items: socialmedia
     }),
 }
 </script>

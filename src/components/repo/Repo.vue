@@ -54,7 +54,11 @@
                     icon 
                     color="black" 
                     v-bind="attrs"
-                    v-on="on">
+                    v-on="on"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    :href="repo.data.html_url"
+                    >
                         <v-icon>mdi-github</v-icon>
                     </v-btn>
                 </template>
@@ -96,41 +100,9 @@
         <div v-else-if="!languages.success">
         <!-- TODO: ErrorMessage -->
         </div>
-        <v-row v-else>
-            <v-col v-for="l in languages.data" :key="l.language" xl="2" lg="3" md="4">
-                <v-tooltip bottom>
-                    <template v-slot:activator="{ on, attrs }">
-                        <v-card class="text-center" outlined
-                        v-bind="attrs"
-                            v-on="on">
-                            <v-list-item two-line>
-                                <v-list-item-content class="text-left">
-                                    <div class="overline mb-3">{{l.lines}} lines</div>
-                                    <v-list-item-title class="headline mb-1">
-                                        <v-avatar tile size="1.5rem">
-                                            <Devicon :icon="l.language" />
-                                        </v-avatar>
-                                        {{l.language}}
-                                    </v-list-item-title>
-                                </v-list-item-content>
-
-                                <v-list-item-avatar
-                                    tile
-                                    size="80"
-                                >
-                                    <v-progress-circular size="80" :value="l.percent">
-                                        <span class="text-h6 font-weight-thin">
-                                            {{l.percent}}%
-                                        </span>
-                                    </v-progress-circular>
-                                </v-list-item-avatar>
-                            </v-list-item>
-                        </v-card>
-                    </template>
-                    {{l.lines}} lines of {{l.language}}
-                </v-tooltip>
-            </v-col>
-        </v-row>
+        <div v-else>
+            <Languages :languages="languages.data" />
+        </div>
       </v-container>
       <v-container class="py-7">
         <h3 class="subtitle-1 text-uppercase">
@@ -148,48 +120,21 @@
         <div v-else-if="!commits.success">
         <!-- TODO: ErrorMessage -->
         </div>
-        <v-timeline dense v-else>
-            <v-timeline-item
-                v-for="c in commits.data"
-                :key="c.date"
-                :fill-dot="true"
-                :icon="'mdi-source-commit'"
-                color="transparent"
-                icon-color="grey"
-            >
-                <v-card class="elevation-2">
-                    <v-card-title>
-                        <span class="d-sr-only">Commits on </span>{{new Date(c.date).toDateString()}}
-                    </v-card-title>
-                    <v-list-item two-line v-for="gc in c.commits" :key="gc.sha" target="_blank" rel="noopener noreferrer" :href="gc.html_url">
-                        <v-list-item-avatar
-                            size="50"
-                        >   
-                            <v-img :src="gc.author !== null ? gc.author.avatar_url : ''"></v-img>
-                        </v-list-item-avatar>
-                        <v-list-item-content>
-                            <v-list-item-title class="mb-1">
-                                {{gc.commit.message}}
-                            </v-list-item-title>
-                            <v-list-item-subtitle>
-                                {{gc.author.login}}
-                                at {{new Date(gc.commit.author.date).toLocaleTimeString()}}
-                            </v-list-item-subtitle>
-                        </v-list-item-content>
-                    </v-list-item>
-                </v-card>
-            </v-timeline-item>
-        </v-timeline>
+        <div v-else>
+            <Commits :commits="commits.data" />
+        </div>
       </v-container>
     </div>
 </template>
 
 <script>
-import Devicon from "./_helpers/Devicons/Devicon";
-import github from './../api/github'
+import github from './../../api/github'
+import Languages from './Languages'
+import Commits from './Commits'
 export default {
     components: {
-        Devicon
+        Languages,
+        Commits
     },
     data: () => ({
         repo: {
