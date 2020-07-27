@@ -15,13 +15,13 @@
                 indeterminate
                 ></v-progress-circular>
               <div v-else-if="!repo.success">
-                <!-- TODO: ErrorMessage -->
+                <v-icon color="white">mdi-alert-circle</v-icon>
               </div>
               <span class="text-lg-h1 text-h4 font-weight-light" v-else>
                 {{repo.data.name}}
               </span>
               <p class="subtitle-2">
-                Thanks to GitHub Developer API
+                Powered by GitHub Developer API
               </p>
             </v-col>
           </v-row>
@@ -41,7 +41,7 @@
           type="list-item-two-line"
         ></v-skeleton-loader>
         <div v-else-if="!repo.success">
-        <!-- TODO: ErrorMessage -->
+            <ErrorMessage message="Could not load repository" />
         </div>
         <div v-else>
             <p class="text-body-1">
@@ -98,7 +98,7 @@
           width="300px"
         ></v-skeleton-loader>
         <div v-else-if="!languages.success">
-        <!-- TODO: ErrorMessage -->
+            <ErrorMessage message="Could not load languages" />
         </div>
         <div v-else>
             <Languages :languages="languages.data" />
@@ -118,7 +118,7 @@
           type="list-item-avatar-three-line"
         ></v-skeleton-loader>
         <div v-else-if="!commits.success">
-        <!-- TODO: ErrorMessage -->
+            <ErrorMessage message="Could not load commits" />
         </div>
         <div v-else>
             <Commits :commits="commits.data" />
@@ -131,10 +131,12 @@
 import github from './../../api/github'
 import Languages from './Languages'
 import Commits from './Commits'
+import ErrorMessage from './../_helpers/ErrorMessage'
 export default {
     components: {
         Languages,
-        Commits
+        Commits,
+        ErrorMessage
     },
     data: () => ({
         repo: {
@@ -156,6 +158,21 @@ export default {
    watch:{
         $route (to, from){
             if(to.fullPath !== from.fullPath){
+                this.repo = {
+                    loading: true,
+                    success: false,
+                    data: null
+                }
+                this.commits = {
+                    loading: true,
+                    success: false,
+                    data: null
+                }
+                this.languages = {
+                    loading: true,
+                    success: false,
+                    data: null
+                }
                 this.loadData(to.params.name)
             }
         }

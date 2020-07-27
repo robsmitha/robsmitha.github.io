@@ -28,11 +28,23 @@
         </div>
       </v-parallax>
       <v-sheet color="grey lighten-3 py-7 text-center">
-        <span class="text-overline d-block" v-if="user">
-          {{user.bio}}
-        </span>
+        <v-row
+          v-if="!user"
+          class="fill-height"
+          align-content="center"
+          justify="center"
+        >
+          <v-col cols="4">
+            <v-progress-linear
+              color="grey darken-4 accent-4"
+              indeterminate
+              rounded
+              height="6"
+            ></v-progress-linear>
+          </v-col>
+        </v-row>
         <span class="text-overline d-block" v-else>
-          Full Stack Web Development With .NET and JavaScript.
+          {{user.bio}}
         </span>
       </v-sheet>
       <v-container id="projects" class="py-7">

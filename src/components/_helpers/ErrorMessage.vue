@@ -1,13 +1,10 @@
 <template>
-    <v-row>
-        <v-col>
-            <UnDraw />
-        </v-col>
-        <v-col class="text-center">
-            <v-icon>mdi-alert-circle</v-icon>
-            {{message}}
-        </v-col>
-    </v-row>
+    <div>
+        <UnDraw />
+        <br>
+        <v-icon>mdi-alert-circle</v-icon>
+        {{message}}
+    </div>
 </template>
 <script>
 import UnDraw from "./UnDraw/UnDraw";

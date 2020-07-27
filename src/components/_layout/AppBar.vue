@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div id="navTop">
         <v-navigation-drawer
         v-model="drawer"
         clipped
@@ -91,7 +91,7 @@
                 icon
                 large
                 class="ml-md-4 ml-2"
-                to="/"
+                @click="onBrandClick"
             >
                 <v-avatar
                 size="2.8rem"
@@ -128,7 +128,7 @@ import socialmedia from './../_helpers/socialmedia'
     watch:{
         repos(val){
             if(val && Array.isArray(val)){
-                const index = 2
+                const index = 3
                 this.items[index].children = []
                 val.map((repo) => {
                     this.items[index].children.push({ text: repo.name, to: `/repo/${repo.name}` })
@@ -141,7 +141,7 @@ import socialmedia from './../_helpers/socialmedia'
       drawer: false,
       items: [
         { icon: 'mdi-home', text: 'Home', to: '/' },
-        //{ icon: 'mdi-account', text: 'About', to: '/about' },
+        { icon: 'mdi-account', text: 'About', to: '/about' },
         //{ icon: 'mdi-post-outline', text: 'Blog', to: '/blog' },
         {
           icon: 'mdi-chevron-up',
@@ -161,6 +161,16 @@ import socialmedia from './../_helpers/socialmedia'
     }),
     created(){
         this.$store.dispatch('github/getRepos')
+    },
+    methods: {
+        onBrandClick(){
+            if(this.$route.path === '/'){
+                this.$vuetify.goTo('#navTop', { duration: 300, easing: 'easeInCubic' })
+            }
+            else{
+                this.$router.push({ path: '/' })
+            }
+        }
     }
   }
 </script>
